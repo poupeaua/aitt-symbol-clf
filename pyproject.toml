@@ -2,8 +2,11 @@
 name = "aitt-symbol-clf"
 version = "0.1.0"
 description = "Train a Half-Circle grayscale image classifier using pytorch"
+authors = [
+    { name = "Alexandre Poupeau", email = "contact@alexandrepoupeau.com" }
+]
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.13"
 dependencies = [
     "fastapi[standard]>=0.115.12",
     "torch>=2.7.0",
@@ -22,3 +25,8 @@ dev = [
     "jupyter>=1.1.1",
     "notebook>=7.3.2"
 ]
+
+[tool.poetry]
+requires-poetry = ">=2.0"
+package-mode = false
+
