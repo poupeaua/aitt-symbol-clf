@@ -4,7 +4,6 @@ Transforms images
 
 import torch
 import torchvision.transforms.v2 as T
-import torchvision.transforms.functional as F
 import random
 
 from src.data.config import IMG_SHAPE
@@ -59,7 +58,7 @@ class RandomThreshold:
         if isinstance(img, torch.Tensor):
             img = img.clone()  # Avoid modifying the original image
         else:
-            img = T.ToTensor()(img)
+            img = ToTensorNew()(img)
         
         strength = torch.rand(1).item()  # Random value between 0 and 1
         threshold = self.min_threshold + \
@@ -89,7 +88,7 @@ TRAIN_TRANSFORMS = T.Compose([
     T.RandomHorizontalFlip(p=0.5),  # Flip horizontally with 50% probability
     T.RandomRotation(10, fill=255),  # Rotate by ±15 degrees
     T.RandomAffine(degrees=0, translate=(0.2, 0.2), fill=255),
-    T.ToTensor(),  # Convert image to tensor
+    ToTensorNew(),  # Convert image to tensor
     T.GaussianNoise(sigma=0.01),
     RandomThreshold(p=0.5, min_threshold=0.25, max_threshold=0.75), # Random threshold
     RandomDilateTransform(min_kernel=3, max_kernel=7, p=0.5), # Random dilation strength
@@ -100,6 +99,6 @@ TRAIN_TRANSFORMS = T.Compose([
 INFERENCE_TRANSFORMS = T.Compose([
     T.Grayscale(num_output_channels=1),  # Convert to grayscale
     T.Resize(IMG_SHAPE),  # Resize to a fixed size
-    T.ToTensor(),  # Convert image to tensor
+    ToTensorNew(),  # Convert image to tensor
     T.Normalize(mean=[0.5], std=[0.5])  # Normalize for grayscale images
 ])
