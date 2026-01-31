@@ -2,17 +2,19 @@
 API for model inference
 """
 
+import io
+import os
 from fastapi import FastAPI, File
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import HTTPException
 from PIL import Image
 import torch
-import io
 
 from src.data.transforms import INFERENCE_TRANSFORMS
 from src.modeling.model import HCCLF
 
-MODEL_PATH = "models/keep/model_20250315_234944_47.pt"
+MODEL_PATH_DEFAULT = "models/final/model.pt"
+MODEL_PATH = os.getenv("MODEL_PATH", MODEL_PATH_DEFAULT)
 
 device = torch.device("cpu")  # Ensure we are using CPU for inference
 

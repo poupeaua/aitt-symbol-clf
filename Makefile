@@ -10,4 +10,4 @@ build:
 	docker build -t ${image_name} .
 
 run-docker:
-	docker run -p 80:8000 ${image_name} --name ${container_name} --rm
+	docker run -p 8000:80 --name ${container_name} --rm ${image_name}
