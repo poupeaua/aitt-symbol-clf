@@ -21,6 +21,15 @@ run-docker: check-env-vars
 	docker run -p 8000:80 --name ${CONTAINER_NAME} --rm ${IMAGE_NAME}
 
 deploy: check-env-vars build
+
+	@echo "Checking if version $(TAG) already exists in ECR..."
+	@if aws ecr describe-images --repository-name ${IMAGE_NAME} --image-ids imageTag=$(TAG); then \
+		echo "❌ Error: Tag '$(TAG)' already exists in ECR. Version bump required!"; \
+		exit 1; \
+	else \
+		echo "✅ Tag '$(TAG)' not found. Proceeding with push..."; \
+	fi
+
 	aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_REGISTRY}
 	docker tag ${IMAGE_NAME} ${ECR_REPOSITORY_URI_TAGGED}
 	docker push ${ECR_REPOSITORY_URI_TAGGED}
