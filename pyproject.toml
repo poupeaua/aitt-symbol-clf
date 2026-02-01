@@ -8,9 +8,7 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.12,<3.15"
 dependencies= [
-    "fastapi[standard] (>=0.128.0,<0.129.0)",
-    "torch (>=2.10.0,<3.0.0)",
-    "torchvision (>=0.25.0,<0.26.0)",
+    "fastapi[standard] (>=0.128.0,<0.129.0)"
 ]
 
 [dependency-groups]
@@ -26,6 +24,26 @@ dev = [
     "notebook (>=7.5.3,<8.0.0)"
 ]
 
-[tool.poetry]
-requires-poetry = ">=2.0"
-package-mode = false
+[project.optional-dependencies]
+gpu = [
+    "torch>=2.4.0",
+    "torchvision>=0.19.0",
+]
+cpu = [
+    "torch>=2.4.0",
+    "torchvision>=0.19.0",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+# This only applies when the 'cpu' group is requested
+torch = [
+  { index = "pytorch-cpu", marker = "extra == 'cpu'" },
+]
+torchvision = [
+  { index = "pytorch-cpu", marker = "extra == 'cpu'" },
+]
