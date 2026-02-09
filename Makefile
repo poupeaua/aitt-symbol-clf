@@ -3,7 +3,7 @@ include .scripts/ensure_env_vars.mk
 
 # instantiated env variables
 CONTAINER_NAME=angle-symbol-clf-ctr
-VERSION=$(shell poetry version -s)
+VERSION=$(shell uv version --short)
 
 # AWS_ACCOUNT_ID and AWS_REGION are expected to be set in the environment
 TAG=${VERSION}
