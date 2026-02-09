@@ -19,7 +19,11 @@ build-local: check-env-vars
 	docker build -t ${IMAGE_NAME_LOCAL} .
 
 run-docker-local: check-env-vars
-	docker run -p 8000:80 --name ${CONTAINER_NAME} --rm ${IMAGE_NAME_LOCAL}
+	docker run \
+		-p 8000:80 \
+		--network=${DOCKER_NETWORK} \
+		--name ${CONTAINER_NAME} \
+		--rm ${IMAGE_NAME_LOCAL}
 
 # we need to define build for production that is platform agnostic
 build: check-env-vars

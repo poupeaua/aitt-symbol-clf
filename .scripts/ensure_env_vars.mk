@@ -10,5 +10,8 @@ check-env-vars:
 	@if [ -z "$(IMAGE_NAME)" ]; then \
 		echo "ERROR: IMAGE_NAME is not set"; exit 1; \
 	fi
+	@if [ -z "$(DOCKER_NETWORK)" ]; then \
+		echo "ERROR: DOCKER_NETWORK is not set"; exit 1; \
+	fi
 
 	@echo "✅ All required environment variables are set."
