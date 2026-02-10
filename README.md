@@ -44,5 +44,17 @@ This way, we make sure the inference is done on the same type of input data as i
 ## Tools
 
 This project uses [uv](https://docs.astral.sh/uv/) as a project dependency manager.
-I was used to [poetry](https://python-poetry.org/docs/) but I wanted to try it out so 
-here it is in a new project.
+
+## Deployment
+
+The project is deployed as a API within a Docker image in ECR.
+
+You need some environment variables to be set. You can use a .env file that is
+automatically loaded by the Makefile.
+
+```bash
+AWS_ACCOUNT_ID=************
+AWS_REGION=***
+IMAGE_NAME=aitt/angle-symbol-clf
+DOCKER_NETWORK=aitt-network
+```
