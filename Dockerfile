@@ -14,5 +14,5 @@ COPY ./pyproject.toml ${APP_DIR}/pyproject.toml
 RUN pip install uv
 RUN uv pip install -r pyproject.toml --extra cpu --no-cache --torch-backend cpu --system
 
-EXPOSE 80
-CMD ["fastapi", "run", "/app/api.py", "--port", "80"]
+EXPOSE 8000
+CMD ["fastapi", "run", "/app/api.py", "--port", "8000"]

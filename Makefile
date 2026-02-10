@@ -20,7 +20,7 @@ build-local: check-env-vars
 
 run-docker-local: check-env-vars
 	docker run \
-		-p 8000:80 \
+		-p 8000:8000 \
 		--network=${DOCKER_NETWORK} \
 		--name ${CONTAINER_NAME} \
 		--rm ${IMAGE_NAME_LOCAL}
