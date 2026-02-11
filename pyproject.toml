@@ -1,6 +1,6 @@
 [project]
 name = "aitt-symbol-clf"
-version = "0.1.0"
+version = "0.2.0"
 description = "Train a Half-Circle grayscale image classifier using pytorch"
 authors = [
     { name = "Alexandre Poupeau", email = "contact@alexandrepoupeau.com" }
