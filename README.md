@@ -56,5 +56,6 @@ automatically loaded by the Makefile.
 AWS_ACCOUNT_ID=************
 AWS_REGION=***
 IMAGE_NAME=aitt/angle-symbol-clf
+CONTAINER_NAME=aitt-symbol-clf.service
 DOCKER_NETWORK=aitt-network
 ```

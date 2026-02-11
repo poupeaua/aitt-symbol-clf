@@ -11,4 +11,5 @@ check-env-vars:
 	$(call check_var,$(AWS_REGION),AWS_REGION)
 	$(call check_var,$(IMAGE_NAME),IMAGE_NAME)
 	$(call check_var,$(DOCKER_NETWORK),DOCKER_NETWORK)
+	$(call check_var,$(CONTAINER_NAME),CONTAINER_NAME)
 	@echo "✅ All required environment variables are set."

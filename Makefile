@@ -2,7 +2,6 @@ include .env
 include .scripts/ensure_env_vars.mk
 
 # instantiated env variables
-CONTAINER_NAME=angle-symbol-clf-ctr
 VERSION=$(shell uv version --short)
 
 # AWS_ACCOUNT_ID and AWS_REGION are expected to be set in the environment
