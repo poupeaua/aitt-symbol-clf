@@ -1,17 +1,14 @@
 .PHONY: check-env-vars
 
-check-env-vars:
-	@if [ -z "$(AWS_ACCOUNT_ID)" ]; then \
-		echo "ERROR: AWS_ACCOUNT_ID is not set"; exit 1; \
+define check_var
+	@if [ -z "$(1)" ]; then \
+		echo "❌ ERROR: $(2) is not set"; exit 1; \
 	fi
-	@if [ -z "$(AWS_REGION)" ]; then \
-		echo "ERROR: AWS_REGION is not set"; exit 1; \
-	fi
-	@if [ -z "$(IMAGE_NAME)" ]; then \
-		echo "ERROR: IMAGE_NAME is not set"; exit 1; \
-	fi
-	@if [ -z "$(DOCKER_NETWORK)" ]; then \
-		echo "ERROR: DOCKER_NETWORK is not set"; exit 1; \
-	fi
+endef
 
+check-env-vars:
+	$(call check_var,$(AWS_ACCOUNT_ID),AWS_ACCOUNT_ID)
+	$(call check_var,$(AWS_REGION),AWS_REGION)
+	$(call check_var,$(IMAGE_NAME),IMAGE_NAME)
+	$(call check_var,$(DOCKER_NETWORK),DOCKER_NETWORK)
 	@echo "✅ All required environment variables are set."
