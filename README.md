@@ -49,13 +49,7 @@ This project uses [uv](https://docs.astral.sh/uv/) as a project dependency manag
 
 The project is deployed as a API within a Docker image in ECR.
 
-You need some environment variables to be set. You can use a .env file that is
+You need some environment variables to be set. You can use a `.env` file that is
 automatically loaded by the Makefile.
 
-```bash
-AWS_ACCOUNT_ID=************
-AWS_REGION=***
-IMAGE_NAME=aitt/angle-symbol-clf
-CONTAINER_NAME=aitt-symbol-clf.service
-DOCKER_NETWORK=aitt-network
-```
+See `.env.example` to see how to fill it.
