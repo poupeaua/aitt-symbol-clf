@@ -1,22 +1,49 @@
 [project]
-name = "halfcircle-clf"
-version = "0.1.0"
+name = "aitt-symbol-clf"
+version = "0.2.0"
 description = "Train a Half-Circle grayscale image classifier using pytorch"
+authors = [
+    { name = "Alexandre Poupeau", email = "contact@alexandrepoupeau.com" }
+]
 readme = "README.md"
-requires-python = ">=3.11"
-dependencies = [
-    "lightning>=2.5.0.post0",
-    "matplotlib>=3.10.1",
-    "opencv-python>=4.11.0.86",
-    "scikit-learn>=1.6.1",
-    "tensorboard>=2.19.0",
-    "torch>=2.6.0",
-    "torchvision>=0.21.0",
+requires-python = ">=3.12,<3.15"
+dependencies= [
+    "fastapi[standard] (>=0.128.0,<0.129.0)"
 ]
 
 [dependency-groups]
 dev = [
-    "jupyter>=1.1.1",
-    "notebook>=7.3.2",
+    "opencv-python (>=4.13.0.90,<5.0.0.0)",
+    "pymupdf (>=1.26.7,<2.0.0)",
+    "tqdm (>=4.67.2,<5.0.0)",
+    "torchmetrics (>=1.8.2,<2.0.0)",
+    "matplotlib (>=3.10.8,<4.0.0)",
+    "scikit-learn (>=1.8.0,<2.0.0)",
+    "tensorboard (>=2.20.0,<3.0.0)",
+    "jupyter (>=1.1.1,<2.0.0)",
+    "notebook (>=7.5.3,<8.0.0)"
 ]
-docs = []
+
+[project.optional-dependencies]
+gpu = [
+    "torch>=2.4.0",
+    "torchvision>=0.19.0",
+]
+cpu = [
+    "torch>=2.4.0",
+    "torchvision>=0.19.0",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+# This only applies when the 'cpu' group is requested
+torch = [
+  { index = "pytorch-cpu", marker = "extra == 'cpu'" },
+]
+torchvision = [
+  { index = "pytorch-cpu", marker = "extra == 'cpu'" },
+]
